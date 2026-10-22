@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "targets": [
+    {"name": "primary", "protocol": "chat", "transport": "http", "base_url": "https://primary.example/v1", "model": "primary-model", "api_key_env": "PRIMARY_API_KEY"},
+    {"name": "fallback", "protocol": "anthropic", "transport": "sdk", "base_url": "https://fallback.example/v1", "model": "fallback-model", "api_key_env": "FALLBACK_API_KEY"}
+  ],
+  "fallbacks": {"primary": "fallback", "fallback": "primary"}
+}

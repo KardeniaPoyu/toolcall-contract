@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "targets": [{
+    "name": "candidate-model", "protocol": "chat", "transport": "http",
+    "base_url": "https://your-gateway.example/v1", "model": "replace-with-your-model-id",
+    "api_key_env": "MODEL_API_KEY"
+  }],
+  "scenarios": ["basic", "unicode-escaping", "nested-arguments", "parallel-interleaved", "cancel-mid-arguments"]
+}

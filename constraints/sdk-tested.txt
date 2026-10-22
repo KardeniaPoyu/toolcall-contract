@@ -1,0 +1,4 @@
+# Tested direct versions, not a full transitive dependency lock.
+openai==2.38.0
+anthropic==0.76.0
+httpx==0.28.1

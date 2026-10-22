@@ -1,0 +1,41 @@
+name: Live model gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      MODEL_BASE_URL: ${{ vars.MODEL_BASE_URL }}
+      MODEL_NAME: ${{ vars.MODEL_NAME }}
+      MODEL_PROTOCOL: ${{ vars.MODEL_PROTOCOL }}
+      MODEL_API_KEY: ${{ secrets.MODEL_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install .
+      - name: Build explicit target configuration
+        shell: python
+        run: |
+          import json, os
+          from pathlib import Path
+          target = {
+              "name": "candidate", "protocol": os.environ.get("MODEL_PROTOCOL") or "chat",
+              "transport": "http", "base_url": os.environ["MODEL_BASE_URL"],
+              "model": os.environ["MODEL_NAME"], "api_key_env": "MODEL_API_KEY"
+          }
+          config = {"schema_version": 1, "targets": [target], "scenarios": [
+              "basic", "unicode-escaping", "nested-arguments", "parallel-interleaved",
+              "cancel-mid-arguments", "retry-mid-arguments", "retry-after-tool-ready"
+          ]}
+          Path("targets.local.json").write_text(json.dumps(config), encoding="utf-8")
+      - run: tcc probe --config targets.local.json --require-wire --report-dir reports/live
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: live-contract
+          path: reports/live/

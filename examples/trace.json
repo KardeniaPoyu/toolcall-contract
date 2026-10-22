@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "target": "external-sdk",
+  "evidence": "external",
+  "scenario": {
+    "name": "minimal-record", "mode": "normal", "cut_after": 1,
+    "calls": [{"name": "record", "arguments": {"x": 1}}]
+  },
+  "events": [
+    {"kind": "attempt_start", "attempt": 0, "data": "primary"},
+    {"kind": "tool_start", "attempt": 0, "slot": "0", "call_id": "call_a", "name": "record"},
+    {"kind": "args", "attempt": 0, "slot": "0", "data": "{\"x\":"},
+    {"kind": "args", "attempt": 0, "slot": "0", "data": "1}"},
+    {"kind": "tool_end", "attempt": 0, "slot": "0"},
+    {"kind": "finish", "attempt": 0, "data": "tool_calls"},
+    {"kind": "stream_end", "attempt": 0},
+    {"kind": "close", "attempt": 0},
+    {"kind": "attempt_end", "attempt": 0, "data": "success"},
+    {"kind": "execute", "attempt": 0, "slot": "0", "call_id": "call_a", "name": "record", "data": {"x": 1}}
+  ]
+}
