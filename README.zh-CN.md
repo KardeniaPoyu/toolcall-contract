@@ -1,5 +1,9 @@
 # Toolcall Contract · 工具调用协议验收套件
 
+[![Contract suite](https://github.com/KardeniaPoyu/toolcall-contract/actions/workflows/ci.yml/badge.svg)](https://github.com/KardeniaPoyu/toolcall-contract/actions/workflows/ci.yml)
+
+[GitHub 仓库](https://github.com/KardeniaPoyu/toolcall-contract) · [提交问题](https://github.com/KardeniaPoyu/toolcall-contract/issues/new?template=bug_report.md)
+
 在接入新模型、升级 SDK 或更换网关之前，用同一组测试检查工具调用语义是否保持完整。
 
 重点检查：**重复调用、参数丢失、结束事件缺失**。流式输出、取消、重试和 fallback 都记录为统一事件轨迹，

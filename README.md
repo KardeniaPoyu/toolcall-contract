@@ -1,10 +1,15 @@
 # Toolcall Contract
 
+[![Contract suite](https://github.com/KardeniaPoyu/toolcall-contract/actions/workflows/ci.yml/badge.svg)](https://github.com/KardeniaPoyu/toolcall-contract/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 **Catch broken tool-call semantics before a model, SDK, or gateway reaches production.**
 
 One suite. Three streaming protocols. Deterministic faults. CI-readable evidence.
 
 [中文说明](README.zh-CN.md) · [Contract](docs/contract.md) · [Adapters](docs/adapters.md) · [CI](docs/ci.md)
+
+[GitHub repository](https://github.com/KardeniaPoyu/toolcall-contract) · [Report a regression](https://github.com/KardeniaPoyu/toolcall-contract/issues/new?template=bug_report.md)
 
 Toolcall Contract checks whether streamed tool calls retain their IDs, arguments, completion events,
 and execution multiplicity through cancellation, retry, and fallback. It separates proposed calls
